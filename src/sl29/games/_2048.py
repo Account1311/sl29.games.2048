@@ -1,6 +1,6 @@
 """Module providing the logic of the 2048 game"""
 
-import random
+import random, copy
 from typing import List, Tuple
 
 TAILLE:int = 4
@@ -17,7 +17,10 @@ def nouvelle_partie() -> Tuple[List[List[int]], int]:
     :return: Une grille TAILLExTAILLE initialisée avec deux tuiles, ainsi que le score à 0.
     :rtype: Tuple[List[List[int]], int]
     """
-    raise NotImplementedError("Fonction nouvelle_partie non implémentée.")
+    plateau =_creer_plateau_vide()
+    plateau2 = _ajouter_tuile(plateau)
+    plateau3 = _ajouter_tuile(plateau2)
+    return plateau3, 0
 
 def jouer_coup(plateau: List[List[int]], direction: str) -> tuple[List[List[int]], int, bool]:
     """
@@ -55,7 +58,14 @@ def _get_cases_vides(plateau: List[List[int]]) -> List[Tuple[int, int]]:
     :return: Une liste de coordonnées
     :rtype: List[Tuple[int, int]]
     """
-    
+    return [(i,j) for i in range(len(plateau)) for j in range(len(plateau)) if plateau[i][j]==0]
+    # liste = []
+    # for i in range(len(plateau)):
+    #     for j in range(len(plateau)):
+    #         if plateau[i][j] == 0:
+    #             liste.append((i,j))
+    # return liste
+# 
 
 def _ajouter_tuile(plateau: List[List[int]]) -> List[List[int]]:
     """
@@ -66,7 +76,14 @@ def _ajouter_tuile(plateau: List[List[int]]) -> List[List[int]]:
     :return: Une nouvelle grille avec une tuile ajoutée.
     :rtype: List[List[int]]
     """
-    raise NotImplementedError("Fonction _ajouter_tuile non implémentée.")
+    liste = _get_cases_vides(plateau)
+    (i,j)=random.choice(liste)
+    nouveau_plateau = copy.deepcopy(plateau)
+    nouveau_plateau[i][j]= 2
+    return nouveau_plateau
+    
+
+
 
 def _supprimer_zeros(ligne: List[int]) -> List[int]:
     """

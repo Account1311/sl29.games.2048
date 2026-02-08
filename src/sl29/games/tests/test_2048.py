@@ -76,12 +76,12 @@ def test__supprimer_zeros():
     
     liste = [0,0,0]
     expected = []
-    result = test__supprimer_zeros(liste)
+    result = _supprimer_zeros(liste)
     assert result == expected, f"supprimer 0 de {liste} aurait du être {expected} mais vaut {0}"
     
     liste = [2,2,2]
     expected = [2,2,2]
-    result = test__supprimer_zeros(liste)
+    result = _supprimer_zeros(liste)
     assert result == expected, f"supprimer 0 de {liste} aurait du être {expected} mais vaut {0}"
 
 

@@ -127,7 +127,7 @@ def _fusionner(ligne: List[int]) -> Tuple[List[int], int]:
     return liste_fusionnee, points
 
 
-def _completer_zeros(ligne): # ajouter les annotations de type
+def _completer_zeros(ligne: List[int]) -> List[int]: # ajouter les annotations de type
     """
     complète les zéros manquant d'une ligne après un déplacement
 
@@ -143,11 +143,24 @@ def _completer_zeros(ligne): # ajouter les annotations de type
         
 
 
-def _deplacer_gauche(plateau) : # ajouter les annotations de type
+def _deplacer_gauche(plateau: List[List[int]]) -> List[List[int]] : # ajouter les annotations de type
     """
-    DOCSTRING À ÉCRIRE
+    déplace à gauche
+
+    :param plateau: Une liste de listes d'entiers .
+    :type plateau: List[List[int]]
+    :return: le nouveau plateau modifié, les nouveaux points
+    :rtype: Tuple(List[List[int]],[int]) 
     """
-    raise NotImplementedError("Fonction _deplacer_gauche non implémentée.")
+    nouveau_plateau = []
+    nouveaux_points = 0
+    for i in range(len(plateau)):
+        ligne_sans_zeros = _supprimer_zeros(plateau[i])
+        ligne_fusionnee, points = _fusionner(ligne_sans_zeros)
+        nouveaux_points += points
+        ligne_finale = _completer_zeros(ligne_fusionnee)
+        nouveau_plateau.append(ligne_finale)
+    return nouveau_plateau, nouveaux_points
 
 def _inverser_lignes(plateau): # ajouter les annotations de type
     """

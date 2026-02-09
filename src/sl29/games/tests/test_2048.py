@@ -84,6 +84,15 @@ def test__supprimer_zeros():
     result = _supprimer_zeros(liste)
     assert result == expected, f"supprimer 0 de {liste} aurait du être {expected} mais vaut {0}"
 
+    #version boucle
+    #entrees_attendues = (
+    #    ([0,0,0], []) 
+    #    ([2,2,2], [2,2,2])
+    #    )
+    #for entree in entrees_attendues:
+    #result = _supprimer_zeros(entree)
+    #assert result == attendu, f"entree:{entree}, attendu: {attendu} or j'ai eu {result}."
+
 
 
 

@@ -162,11 +162,29 @@ def _deplacer_gauche(plateau: List[List[int]]) -> List[List[int]] : # ajouter le
         nouveau_plateau.append(ligne_finale)
     return nouveau_plateau, nouveaux_points
 
-def _inverser_lignes(plateau): # ajouter les annotations de type
+def _inverser_lignes(plateau: List[List[int]]) -> List[List[int]]: # ajouter les annotations de type
     """
-    DOCSTRING À ÉCRIRE
+    inverse chaque ligne du plateau pour un futur déplacement à droite
+
+    :param plateau: Une liste de listes d'entiers .
+    :type plateau: List[List[int]]
+    :return: le nouveau plateau avec les lignes inversées
+    :rtype: List[List[int]]
     """
-    raise NotImplementedError("Fonction _inverser_lignes non implémentée.")
+    
+    return [ligne[::-1] for ligne in plateau]
+    
+    
+    #nouv_plateau = []
+    #for liste in plateau:
+    #    ligne = []
+    #    for i in range(len(ligne)-1,-1,-1):
+    #le deuxième -1 est là pour inclure la dernière valeur (ici à l'envers)
+    #        ligne.append(ligne[i])
+    #    nouv_plateau.append(ligne)
+    #return nouv_plateau
+
+
 
 def _deplacer_droite(plateau: List[List[int]]) -> Tuple[List[List[int]], int]:
     """

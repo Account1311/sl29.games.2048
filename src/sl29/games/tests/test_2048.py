@@ -167,7 +167,43 @@ def test__deplacer_gauche():
 
 def test__inverser_lignes():
     print("----> Tests de _inverser_lignes...")
-    raise NotImplementedError("Tests de _inverser_lignes non implémentés.")
+    plateau1 = [
+        [4, 0, 2, 0],
+        [4, 4, 0, 0],
+        [2, 0, 4, 0],
+        [8, 4, 4, 0]
+    ]
+
+
+    expected1 = [
+        [0, 2, 0, 4],
+        [0, 0, 4, 4],
+        [0, 4, 0, 2],
+        [0, 4, 4, 8]
+    ]
+
+    plateau2 = [
+        [2, 0, 2, 2],
+        [4, 2, 0, 4],
+        [2, 0, 4, 0],
+        [0, 2, 4, 0]
+    ]
+
+
+    expected2 = [
+        [2, 2, 0, 2],
+        [4, 0, 2, 4],
+        [0, 4, 0, 2],
+        [0, 4, 2, 0]
+    ]
+
+    result1 = _inverser_lignes(plateau1)
+    assert result1 == expected1, f"l'inverse de {plateau1} aurait du être {expected1} mais vaut {result1}"
+    
+    result2 = _inverser_lignes(plateau2)
+    assert result2 == expected2, f"l'inverse de {plateau2} aurait du être {expected2} mais vaut {result2}"
+
+
     print("OK")
 
 def test__deplacer_droite():

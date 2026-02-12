@@ -203,7 +203,12 @@ def _deplacer_droite(plateau: List[List[int]]) -> Tuple[List[List[int]], int]:
 
 def _transposer(plateau): # ajouter les annotations de type
     """
-    DOCSTRING À ÉCRIRE
+    Inverse les lignes et les colonnes dans le plateau 
+
+    :param plateau: La grille actuelle du jeu.
+    :type plateau: List[List[int]]
+    :return: le plateau transposé
+    :rtype: List[List[int]
     """
     raise NotImplementedError("Fonction _transposer non implémentée.")
 

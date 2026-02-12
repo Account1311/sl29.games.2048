@@ -195,7 +195,11 @@ def _deplacer_droite(plateau: List[List[int]]) -> Tuple[List[List[int]], int]:
     :return: Un tuple contenant la nouvelle grille après déplacement et les points gagnés.
     :rtype: Tuple[List[List[int]], int]
     """
-    raise NotImplementedError("Fonction _deplacer_droite non implémentée.")
+    plateau1 = _inverser_lignes(plateau)
+    plateau2, score = _deplacer_gauche(plateau1)
+    plateau3 = _inverser_lignes(plateau2)
+    return plateau3, score
+
 
 def _transposer(plateau): # ajouter les annotations de type
     """

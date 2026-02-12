@@ -247,7 +247,10 @@ def _deplacer_bas(plateau: List[List[int]]) -> Tuple[List[List[int]], int]:
 
 def _partie_terminee(plateau: List[List[int]]) -> bool:
     """
-    DOCSTRING À ÉCRIRE
+    Termine la partie en cours selon deux conditions
+
+    :param plateau: La grille actuelle du jeu.
+    :return: Un booléen 
     """
     # Partie non terminee si il y a des cases vides
     # Partie non terminee si il y a des fusions possibles (horizontale ou verticale)

@@ -210,7 +210,13 @@ def _transposer(plateau): # ajouter les annotations de type
     :return: le plateau transposé
     :rtype: List[List[int]
     """
-    raise NotImplementedError("Fonction _transposer non implémentée.")
+    nouv_plateau = []
+    for i in range(len(plateau)):
+        ligne=[]
+        for j in range(len(plateau)):
+            ligne.append(plateau[j][i])
+        nouv_plateau.append(ligne)
+    return nouv_plateau
 
 def _deplacer_haut(plateau: List[List[int]]) -> Tuple[List[List[int]], int]:
     """

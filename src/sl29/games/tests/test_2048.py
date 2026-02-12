@@ -280,13 +280,49 @@ def test__transposer():
     ]
     
     resultat2 = _transposer(plateau2)
-    assert resultat2 == expected2, f"la transposée de {plateau2} aurait du être {expected2} mais est {resultat2}"
+    assert resultat2 == expected2, f"la transposée {plateau2} aurait du être {expected2} mais est {resultat2}"
     print("OK")
 
 
 def test__deplacer_haut():
     print("----> Tests de _deplacer_haut...")
-    raise NotImplementedError("Tests de _deplacer_haut non implémentés.")
+    plateau1 = [
+        [2, 2, 0, 2],
+        [2, 2, 4, 2],
+        [0, 0, 4, 4],
+        [8, 4, 2, 2]
+    ]
+    # Rappel : [2,2,2,2] -> [4,4,0,0] (8 pts)
+    # [8,4,2,2] -> [8,4,4,0] (4 pts)
+    expected1 = [
+        [4, 4, 8, 4],
+        [8, 4, 2, 4],
+        [0, 0, 0, 2],
+        [0, 0, 0, 0]
+    ]
+    attendu_pts1 = 20 + 0 + 0 + 0 # 20 points
+
+    plateau2 = [
+        [4, 2, 2, 0],
+        [0, 4, 2, 2],
+        [8, 4, 2, 2],
+        [8, 4, 4, 2]
+    ]
+    expected2 = [
+        [4, 2, 4, 4],
+        [16, 8, 2, 2],
+        [0, 4, 4, 0],
+        [0, 0, 0, 0]
+    ]
+    attendu_pts2 = 8 + 24 + 0 + 0 # 30 points
+
+    resultat1, points1 = _deplacer_haut(plateau1)
+    assert resultat1 == expected1, f"le déplacement haut de {plateau1} aurait du être {expected1} mais est {resultat1}"
+    assert points1 == attendu_pts1, f"les points de {plateau1} auraient du être {attendu_pts1} mais sont {points1}"
+
+    resultat2, points2 = _deplacer_haut(plateau2)
+    assert resultat2 == expected2, f"le déplacement haut de {plateau2} aurait du être {expected2} mais est {resultat2}"
+    assert points2 == attendu_pts2, f"les points de {plateau2} auraient du être {attendu_pts2} mais sont {points2}"
     print("OK")
 
 def test__deplacer_bas():

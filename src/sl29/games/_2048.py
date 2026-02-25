@@ -33,8 +33,30 @@ def jouer_coup(plateau: List[List[int]], direction: str) -> tuple[List[List[int]
     :return: Retourne un tuple (nouveau_plateau, points, est_fini).
     :rtype: tuple[List[List[int]], int, bool]
     """
+    plateau2 = copy.deepcopy(plateau)
+    points = 0
+    if direction == "g":
+        nv_plateau, nv_points=  _deplacer_gauche(plateau2)
+    elif direction == "d":
+        nv_plateau, nv_points= _deplacer_droite(plateau2)
+    elif direction == "h":
+        nv_plateau, nv_points= _deplacer_haut(plateau2)
+    elif direction == "b":
+        nv_plateau, nv_points= _deplacer_bas(plateau2)
+    else:
+        
+       return plateau, 0, _partie_terminee(plateau)
+        
+        
+    
+    if plateau != nv_plateau:
+        nv_plateau = _ajouter_tuile(nv_plateau)
+        points += nv_points
+    
+    est_fini = _partie_terminee(nv_plateau)
+    return  nv_plateau, points, est_fini
+    
 
-    raise NotImplementedError("Fonction jouer_coup non implémentée.")
 
 # ==========================================================
 # 🔒 FONCTIONS PRIVÉES (LOGIQUE INTERNE)
@@ -76,10 +98,13 @@ def _ajouter_tuile(plateau: List[List[int]]) -> List[List[int]]:
     :return: Une nouvelle grille avec une tuile ajoutée.
     :rtype: List[List[int]]
     """
-    liste = _get_cases_vides(plateau)
-    (i,j)=random.choice(liste)
     nouveau_plateau = copy.deepcopy(plateau)
-    nouveau_plateau[i][j]= 2
+    liste = _get_cases_vides(plateau)
+    if liste:
+        (i,j)=  random.choice(liste)
+        nouveau_plateau[i][j]= 2
+    else:
+       None
     return nouveau_plateau
     
 
@@ -255,5 +280,19 @@ def _partie_terminee(plateau: List[List[int]]) -> bool:
     # Partie non terminee si il y a des cases vides
     # Partie non terminee si il y a des fusions possibles (horizontale ou verticale)
     # Sinon c'est vrai
+    if _get_cases_vides(plateau):
+        return False
 
-    raise NotImplementedError("Fonction _partie_terminee non implémentée.")
+    # horizontal
+    for ligne in plateau:
+        for i in range(len(ligne)-1):
+            if ligne[i] == ligne[i+1]:
+                return False
+
+    # vertical
+    for i in range(len(plateau)-1):
+        for j in range(len(plateau)):
+            if plateau[i][j] == plateau[i+1][j]:
+                return False
+
+    return True
